@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De Seconde Home – Ảnh thực tế các phòng</title>
+<meta name="description" content="Ảnh thực tế các phòng De Seconde Home – chi nhánh Lê Minh Xuân và Trương Hoàng Thanh, gần sân bay Tân Sơn Nhất.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F3F5F4;color:#17262A;font-family:'Be Vietnam Pro',system-ui,sans-serif}
+a{color:#1F6F64}a:hover{color:#17544B}
+button{font-family:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+header.top{background:#fff;border-bottom:1px solid #E1E6E4}
+header.top .wrap{display:flex;align-items:center;gap:14px;padding-top:14px;padding-bottom:14px}
+.logo{display:inline-flex;flex-direction:column;align-items:center;font-family:'Montserrat',sans-serif;color:#17262A;line-height:1}
+.logo .de{font-size:34px;letter-spacing:1.4px}
+.logo .sm{font-size:10px;letter-spacing:.8px;margin-top:2px}
+.logo .sm:first-of-type{margin-top:3px}
+.vbar{width:1px;height:44px;background:#E1E6E4}
+.sub{font-size:14px;color:#5A6B6E}
+.sticky{position:sticky;top:0;z-index:20;background:rgba(243,245,244,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #E1E6E4}
+.sticky .wrap{padding-top:12px;padding-bottom:12px}
+.seg{display:flex;gap:4px;padding:4px;border-radius:999px;background:#E3EBE8;width:fit-content;max-width:100%;overflow-x:auto}
+.seg button{flex-shrink:0;min-height:52px;padding:0 22px;border-radius:999px;border:none;background:transparent;color:#17262A;font-size:16px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background-color .25s,color .25s,box-shadow .25s,transform .15s}
+.seg button .n{padding:2px 8px;border-radius:999px;background:#fff;color:#3F5653;font-size:13px;font-weight:600}
+.seg button[aria-pressed=true]{background:#1F6F64;color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(31,111,100,.35)}
+.seg button[aria-pressed=true] .n{background:rgba(255,255,255,.22);color:#fff}
+.seg button:active{transform:scale(.96)}
+main .wrap{padding-top:8px;padding-bottom:64px;display:flex;flex-direction:column;gap:24px}
+.branch{display:flex;flex-direction:column;gap:24px;padding-top:24px}
+.bhead{display:flex;flex-direction:column;gap:4px;padding-bottom:12px;border-bottom:2px solid #1F6F64}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#1F6F64}
+.bname{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bname h2{margin:0;font-size:32px;font-weight:700}
+.newb{padding:4px 10px;border-radius:8px;background:#D9480F;color:#fff;font-size:13px;font-weight:700;letter-spacing:.8px}
+.binfo{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.addr{display:inline-flex;align-items:center;gap:6px;font-size:15px;color:#3F5653}
+.muted{font-size:14px;color:#5A6B6E}
+.mapbtn{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 14px;border-radius:999px;background:#1F6F64;color:#fff!important;text-decoration:none;font-size:14px;font-weight:600}
+.type{display:flex;flex-direction:column;gap:20px}
+.thead{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:14px 18px;border-radius:14px;background:#fff;border:1px solid #E1E6E4;border-left:4px solid #1F6F64}
+.thead h3{margin:0;font-size:26px;font-weight:700}
+.chips{display:inline-flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:999px;background:#E3F1EC;color:#17544B;font-size:14px;font-weight:700}
+.room{display:flex;flex-direction:column;gap:12px;scroll-margin-top:96px}
+.rhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px}
+.rhead h4{margin:0;font-size:22px;font-weight:700}
+.kbtn{min-height:36px;padding:0 12px;border-radius:8px;border:1px solid #1F6F64;background:#fff;color:#1F6F64;font-size:14px;font-weight:600;cursor:pointer}
+.note{margin:0;font-size:14px;color:#5A6B6E}
+.empty{height:180px;border-radius:12px;border:1px dashed #CBD4D1;background:#fff;display:flex;align-items:center;justify-content:center;color:#5A6B6E;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:180px;grid-auto-flow:dense;gap:8px}
+.ph{padding:0;border:none;border-radius:12px;overflow:hidden;background:#DCE5E2;cursor:zoom-in;transition:transform .35s ease,box-shadow .35s ease}
+.ph.big{grid-column:span 2;grid-row:span 2}
+.ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s ease}
+.ph:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(23,38,42,.18)}
+.ph:hover img{transform:scale(1.06);filter:brightness(1.04)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes zoom{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.anim{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
+.ph{animation:up .5s cubic-bezier(.2,.7,.2,1) both}
+.ph:nth-child(2){animation-delay:.05s}.ph:nth-child(3){animation-delay:.1s}.ph:nth-child(4){animation-delay:.15s}.ph:nth-child(5){animation-delay:.2s}.ph:nth-child(6){animation-delay:.25s}.ph:nth-child(n+7){animation-delay:.3s}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(10,16,18,.94);display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;animation:fade .25s ease both}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:calc(100vh - 160px);object-fit:contain;border-radius:8px;animation:zoom .35s cubic-bezier(.2,.7,.2,1) both}
+.lb .bar{display:flex;align-items:center;gap:16px;color:#fff}
+.lb .cap{font-size:15px;text-align:center;min-width:200px}
+.nav{width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .2s,transform .15s}
+.nav:hover{background:rgba(255,255,255,.28)}
+.nav:active{transform:scale(.92)}
+.lb .close{position:absolute;top:16px;right:16px}
+@media (max-width:600px){
+.wrap{padding:0 14px}
+.logo .de{font-size:28px}.logo .sm{font-size:9px}
+.seg button{min-height:46px;padding:0 16px;font-size:14px}
+.bname h2{font-size:26px}.thead h3{font-size:22px}.rhead h4{font-size:20px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:140px}
+.lb{padding:12px}.lb .cap{min-width:0;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<span class="logo" role="img" aria-label="De Seconde Home"><span class="de">DE</span><span class="sm">SECONDE</span><span class="sm">HOME</span></span>
+<span class="vbar" aria-hidden="true"></span>
+<span class="sub">Ảnh thực tế các phòng</span>
+</div></header>
+<div class="sticky"><div class="wrap"><div class="seg" role="group" aria-label="Chọn chi nhánh" id="tabs"></div></div></div>
+<main><div class="wrap" id="content"></div></main>
+<div class="lb" id="lb" role="dialog" aria-label="Xem ảnh lớn" aria-modal="true">
+<button class="nav close" id="lbClose" aria-label="Đóng"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img id="lbImg" alt="">
+<div class="bar">
+<button class="nav" id="lbPrev" aria-label="Ảnh trước"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<span class="cap" id="lbCap"></span>
+<button class="nav" id="lbNext" aria-label="Ảnh tiếp theo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+</div>
+</div>
+<script>
+const D = {"rooms": [{"code": "F01", "title": "Phòng F01", "tag": "Cửa sổ + ban công nhỏ", "type": "cozy", "branch": "lmx", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/f01/01.jpg", "thumb": "images/f01/thumb/01.jpg"}, {"cap": "Góc TV và kệ để đồ", "src": "images/f01/02.jpg", "thumb": "images/f01/thumb/02.jpg"}, {"cap": "Nhìn về lối vào", "src": "images/f01/03.jpg", "thumb": "images/f01/thumb/03.jpg"}, {"cap": "Đầu giường", "src": "images/f01/04.jpg", "thumb": "images/f01/thumb/04.jpg"}, {"cap": "Đèn ngủ và tab đầu giường", "src": "images/f01/05.jpg", "thumb": "images/f01/thumb/05.jpg"}, {"cap": "Phòng tắm riêng", "src": "images/f01/06.jpg", "thumb": "images/f01/thumb/06.jpg"}]}, {"code": "F02", "title": "Phòng F02", "tag": "Cửa sổ + ban công nhỏ", "type": "cozy", "branch": "lmx", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/f02/01.jpg", "thumb": "images/f02/thumb/01.jpg"}, {"cap": "Cửa ra ban công và góc TV", "src": "images/f02/02.jpg", "thumb": "images/f02/thumb/02.jpg"}, {"cap": "Nhìn về phía ban công", "src": "images/f02/03.jpg", "thumb": "images/f02/thumb/03.jpg"}, {"cap": "Nhìn về lối vào", "src": "images/f02/04.jpg", "thumb": "images/f02/thumb/04.jpg"}, {"cap": "Đầu giường và đèn cây", "src": "images/f02/05.jpg", "thumb": "images/f02/thumb/05.jpg"}, {"cap": "Tranh đầu giường", "src": "images/f02/06.jpg", "thumb": "images/f02/thumb/06.jpg"}, {"cap": "Đèn ngủ và tab đầu giường", "src": "images/f02/07.jpg", "thumb": "images/f02/thumb/07.jpg"}, {"cap": "Bàn trang điểm gương LED", "src": "images/f02/08.jpg", "thumb": "images/f02/thumb/08.jpg"}, {"cap": "Phòng tắm riêng", "src": "images/f02/09.jpg", "thumb": "images/f02/thumb/09.jpg"}]}, {"code": "F03", "title": "Phòng F03", "tag": "Cửa sổ + ban công nhỏ", "type": "cozy", "branch": "lmx", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/f03/01.jpg", "thumb": "images/f03/thumb/01.jpg"}, {"cap": "Góc TV và lối vào", "src": "images/f03/02.jpg", "thumb": "images/f03/thumb/02.jpg"}, {"cap": "Nhìn từ cửa vào", "src": "images/f03/03.jpg", "thumb": "images/f03/thumb/03.jpg"}, {"cap": "Góc ghế lười và bàn trang điểm", "src": "images/f03/04.jpg", "thumb": "images/f03/thumb/04.jpg"}, {"cap": "Phòng buổi tối với đèn ngủ", "src": "images/f03/05.jpg", "thumb": "images/f03/thumb/05.jpg"}]}, {"code": "G01", "title": "Phòng G01", "tag": "40m² · bếp riêng · tủ đồ", "type": "master", "branch": "lmx", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/g01/01.jpg", "thumb": "images/g01/thumb/01.jpg"}, {"cap": "Nhìn từ cửa vào", "src": "images/g01/02.jpg", "thumb": "images/g01/thumb/02.jpg"}, {"cap": "Giường, tủ quần áo và sofa", "src": "images/g01/03.jpg", "thumb": "images/g01/thumb/03.jpg"}, {"cap": "Đầu giường", "src": "images/g01/04.jpg", "thumb": "images/g01/thumb/04.jpg"}, {"cap": "Bếp riêng", "src": "images/g01/05.jpg", "thumb": "images/g01/thumb/05.jpg"}, {"cap": "Phòng tắm riêng", "src": "images/g01/06.jpg", "thumb": "images/g01/thumb/06.jpg"}]}, {"code": "B03", "title": "Phòng B03", "tag": "Ban công lớn · TV/máy chiếu · bếp riêng", "type": "cinema", "branch": "lmx", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/b03/01.jpg", "thumb": "images/b03/thumb/01.jpg"}, {"cap": "Ban công nhìn ra cây xanh", "src": "images/b03/02.jpg", "thumb": "images/b03/thumb/02.jpg"}, {"cap": "Ban công có mái che", "src": "images/b03/03.jpg", "thumb": "images/b03/thumb/03.jpg"}, {"cap": "Góc bếp với bồn rửa và bếp điện", "src": "images/b03/04.jpg", "thumb": "images/b03/thumb/04.jpg"}, {"cap": "Tủ bếp ngoài ban công", "src": "images/b03/05.jpg", "thumb": "images/b03/thumb/05.jpg"}, {"cap": "Giường và sofa", "src": "images/b03/06.jpg", "thumb": "images/b03/thumb/06.jpg"}, {"cap": "Góc nhìn rộng", "src": "images/b03/07.jpg", "thumb": "images/b03/thumb/07.jpg"}, {"cap": "Máy chiếu và đầu giường", "src": "images/b03/08.jpg", "thumb": "images/b03/thumb/08.jpg"}, {"cap": "Sofa, cửa sổ và bàn trang điểm", "src": "images/b03/09.jpg", "thumb": "images/b03/thumb/09.jpg"}, {"cap": "Kệ treo tường và máy chiếu", "src": "images/b03/10.jpg", "thumb": "images/b03/thumb/10.jpg"}, {"cap": "Đầu giường", "src": "images/b03/11.jpg", "thumb": "images/b03/thumb/11.jpg"}, {"cap": "Tranh trang trí", "src": "images/b03/12.jpg", "thumb": "images/b03/thumb/12.jpg"}, {"cap": "Đèn ngủ và tab đầu giường", "src": "images/b03/13.jpg", "thumb": "images/b03/thumb/13.jpg"}, {"cap": "Đèn cây", "src": "images/b03/14.jpg", "thumb": "images/b03/thumb/14.jpg"}, {"cap": "Phòng tắm riêng", "src": "images/b03/15.jpg", "thumb": "images/b03/thumb/15.jpg"}]}, {"code": "B01", "title": "Phòng B01", "tag": "Ban công lớn · TV/máy chiếu · bếp riêng", "type": "cinema", "branch": "lmx", "note": "Ảnh phòng đang cập nhật. Ảnh dưới đây là bếp cùng kiểu phòng B03.", "photos": [{"cap": "Bếp cùng kiểu B03", "src": "images/b01/01.jpg", "thumb": "images/b01/thumb/01.jpg"}, {"cap": "Tủ bếp cùng kiểu B03", "src": "images/b01/02.jpg", "thumb": "images/b01/thumb/02.jpg"}]}, {"code": "B02", "title": "Phòng B02", "tag": "Ban công lớn · máy chiếu · bồn tắm", "type": "suite", "branch": "lmx", "note": "Ảnh phòng đang cập nhật.", "photos": []}, {"code": "Cozy", "title": "Phòng Cozy", "tag": "Trần gương đèn LED", "type": "", "branch": "thth", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/cozy/01.jpg", "thumb": "images/cozy/thumb/01.jpg"}, {"cap": "Trần gương và đầu giường", "src": "images/cozy/02.jpg", "thumb": "images/cozy/thumb/02.jpg"}, {"cap": "Giường và tranh mặt trời", "src": "images/cozy/03.jpg", "thumb": "images/cozy/thumb/03.jpg"}, {"cap": "Ghế bành và khay trà", "src": "images/cozy/04.jpg", "thumb": "images/cozy/thumb/04.jpg"}, {"cap": "Bàn làm việc", "src": "images/cozy/05.jpg", "thumb": "images/cozy/thumb/05.jpg"}, {"cap": "Smart TV và tủ lạnh", "src": "images/cozy/06.jpg", "thumb": "images/cozy/thumb/06.jpg"}, {"cap": "Đèn ngủ đầu giường", "src": "images/cozy/07.jpg", "thumb": "images/cozy/thumb/07.jpg"}, {"cap": "Lavabo và gương LED", "src": "images/cozy/08.jpg", "thumb": "images/cozy/thumb/08.jpg"}, {"cap": "Bộ vệ sinh cá nhân", "src": "images/cozy/09.jpg", "thumb": "images/cozy/thumb/09.jpg"}, {"cap": "Phòng tắm riêng", "src": "images/cozy/10.jpg", "thumb": "images/cozy/thumb/10.jpg"}]}, {"code": "Leaf", "title": "Phòng Leaf", "tag": "Tường xanh lá & sofa", "type": "", "branch": "thth", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/leaf/01.jpg", "thumb": "images/leaf/thumb/01.jpg"}, {"cap": "Trần uốn lượn và đèn pha lê", "src": "images/leaf/02.jpg", "thumb": "images/leaf/thumb/02.jpg"}, {"cap": "Đầu giường tường xanh mint", "src": "images/leaf/03.jpg", "thumb": "images/leaf/thumb/03.jpg"}, {"cap": "Giường, Smart TV và tủ lạnh", "src": "images/leaf/04.jpg", "thumb": "images/leaf/thumb/04.jpg"}, {"cap": "Sofa nhung tăm và bàn làm việc", "src": "images/leaf/05.jpg", "thumb": "images/leaf/thumb/05.jpg"}, {"cap": "Đèn lồng giấy trên đầu giường", "src": "images/leaf/06.jpg", "thumb": "images/leaf/thumb/06.jpg"}, {"cap": "Smart TV và tủ lạnh mini", "src": "images/leaf/07.jpg", "thumb": "images/leaf/thumb/07.jpg"}, {"cap": "Lavabo và gương viền vàng", "src": "images/leaf/08.jpg", "thumb": "images/leaf/thumb/08.jpg"}, {"cap": "Phòng tắm sen cây", "src": "images/leaf/09.jpg", "thumb": "images/leaf/thumb/09.jpg"}]}, {"code": "Master", "title": "Phòng Master", "tag": "Ban công & sofa", "type": "", "branch": "thth", "note": "", "photos": [{"cap": "Toàn cảnh phòng", "src": "images/master/01.jpg", "thumb": "images/master/thumb/01.jpg"}, {"cap": "Góc rộng với bàn làm việc", "src": "images/master/02.jpg", "thumb": "images/master/thumb/02.jpg"}, {"cap": "Giường, TV và tủ quần áo", "src": "images/master/03.jpg", "thumb": "images/master/thumb/03.jpg"}, {"cap": "Smart TV, tủ lạnh và gương", "src": "images/master/04.jpg", "thumb": "images/master/thumb/04.jpg"}, {"cap": "Giường và trần đèn tre", "src": "images/master/05.jpg", "thumb": "images/master/thumb/05.jpg"}, {"cap": "Đèn tre đan và góc sofa", "src": "images/master/06.jpg", "thumb": "images/master/thumb/06.jpg"}, {"cap": "Sofa cạnh cửa sổ", "src": "images/master/07.jpg", "thumb": "images/master/thumb/07.jpg"}, {"cap": "Tủ quần áo có đèn LED", "src": "images/master/08.jpg", "thumb": "images/master/thumb/08.jpg"}, {"cap": "Bàn làm việc", "src": "images/master/09.jpg", "thumb": "images/master/thumb/09.jpg"}, {"cap": "Đầu giường và tranh", "src": "images/master/10.jpg", "thumb": "images/master/thumb/10.jpg"}]}, {"code": "Garden", "title": "Phòng Garden", "tag": "Ban công sân vườn", "type": "", "branch": "thth", "note": "", "photos": [{"cap": "Toàn cảnh phòng với đèn hoàng hôn", "src": "images/garden/01.jpg", "thumb": "images/garden/thumb/01.jpg"}, {"cap": "Ban công sân vườn", "src": "images/garden/02.jpg", "thumb": "images/garden/thumb/02.jpg"}, {"cap": "Góc ngồi giữa cây xanh", "src": "images/garden/03.jpg", "thumb": "images/garden/thumb/03.jpg"}, {"cap": "Phòng nhìn ra ban công ban ngày", "src": "images/garden/04.jpg", "thumb": "images/garden/thumb/04.jpg"}, {"cap": "Sofa nhung cạnh cửa kính", "src": "images/garden/05.jpg", "thumb": "images/garden/thumb/05.jpg"}, {"cap": "Đèn hoàng hôn đầu giường", "src": "images/garden/06.jpg", "thumb": "images/garden/thumb/06.jpg"}, {"cap": "Bàn làm việc và khay trà", "src": "images/garden/07.jpg", "thumb": "images/garden/thumb/07.jpg"}, {"cap": "Đèn ngủ và tranh", "src": "images/garden/08.jpg", "thumb": "images/garden/thumb/08.jpg"}, {"cap": "Smart TV và tủ lạnh", "src": "images/garden/09.jpg", "thumb": "images/garden/thumb/09.jpg"}, {"cap": "Gương soi và giá treo đồ", "src": "images/garden/10.jpg", "thumb": "images/garden/thumb/10.jpg"}, {"cap": "Phòng tắm sen cây", "src": "images/garden/11.jpg", "thumb": "images/garden/thumb/11.jpg"}, {"cap": "Lavabo và gương", "src": "images/garden/12.jpg", "thumb": "images/garden/thumb/12.jpg"}]}], "kitchen": [{"cap": "Bếp chung: bếp từ, nồi cơm điện, máy giặt", "src": "images/bep-chung-truong-hoang-thanh/01.jpg", "thumb": "images/bep-chung-truong-hoang-thanh/thumb/01.jpg"}, {"cap": "Bếp chung và tủ lạnh lớn", "src": "images/bep-chung-truong-hoang-thanh/02.jpg", "thumb": "images/bep-chung-truong-hoang-thanh/thumb/02.jpg"}, {"cap": "Quầy bếp đá đen và kệ gia vị", "src": "images/bep-chung-truong-hoang-thanh/03.jpg", "thumb": "images/bep-chung-truong-hoang-thanh/thumb/03.jpg"}, {"cap": "Quầy bar cạnh cửa sổ", "src": "images/bep-chung-truong-hoang-thanh/04.jpg", "thumb": "images/bep-chung-truong-hoang-thanh/thumb/04.jpg"}]};
+const BR = [
+ { id: 'lmx', name: 'Lê Minh Xuân', isNew: true, address: '140/12 Lê Minh Xuân, Phường Tân Sơn Nhất, TP.HCM', map: 'https://maps.app.goo.gl/6yNHSdm3X7gpYzvQA' },
+ { id: 'thth', name: 'Trương Hoàng Thanh', address: '32/27 Trương Hoàng Thanh, Phường Bảy Hiền, TP.HCM', map: 'https://maps.app.goo.gl/WKeZAbP6gu9M6rdY8' }
+];
+const TY = [
+ { id: 'cozy', name: 'Cozy Standard', desc: 'View cửa sổ, ban công nhỏ' },
+ { id: 'master', name: 'Master', desc: 'Phòng rộng 40m², bếp riêng, tủ đồ' },
+ { id: 'cinema', name: 'Cinema', desc: 'Ban công lớn, TV/máy chiếu, bếp riêng' },
+ { id: 'suite', name: 'Suite', desc: 'Ban công lớn, máy chiếu, bồn tắm' }
+];
+const PIN = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+const TICK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>';
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const chips = (t) => '<span class="chips">' + String(t || '').split(/\s*[·+,]\s*/).filter(Boolean).map((x) => '<span class="chip">' + TICK + esc(x) + '</span>').join('') + '</span>';
+const sets = {}; D.rooms.forEach((r) => { sets[r.code] = { label: r.title, photos: r.photos }; });
+sets.KIT = { label: 'Bếp chung Trương Hoàng Thanh', photos: D.kitchen };
+let branch = 'lmx';
+
+function grid(key) {
+  const p = sets[key].photos;
+  if (!p.length) return '<div class="empty">Ảnh phòng đang được cập nhật</div>';
+  return '<div class="grid">' + p.map((x, i) => '<button class="ph' + (i === 0 ? ' big' : '') + '" data-k="' + key + '" data-i="' + i + '" aria-label="Phóng to: ' + esc(sets[key].label + ' – ' + x.cap) + '"><img loading="lazy" src="' + (i === 0 ? x.src : x.thumb) + '" alt="' + esc(sets[key].label + ' – ' + x.cap) + '"></button>').join('') + '</div>';
+}
+function room(r) {
+  let h = '<section class="room anim" id="phong-' + r.code.toLowerCase() + '"><div class="rhead"><h4>' + esc(r.title) + '</h4>';
+  if (!r.type) h += chips(r.tag);
+  h += '<span class="muted">' + r.photos.length + ' ảnh</span>';
+  if (r.branch === 'thth') h += '<button class="kbtn" data-k="KIT" data-i="0">Dùng bếp chung · xem ảnh bếp</button>';
+  h += '</div>';
+  if (r.note) h += '<p class="note">' + esc(r.note) + '</p>';
+  return h + grid(r.code) + '</section>';
+}
+function render() {
+  document.getElementById('tabs').innerHTML = BR.map((b) => '<button aria-pressed="' + (b.id === branch) + '" data-b="' + b.id + '">' + esc(b.name) + '<span class="n">' + D.rooms.filter((r) => r.branch === b.id).length + '</span></button>').join('');
+  const b = BR.find((x) => x.id === branch);
+  const rs = D.rooms.filter((r) => r.branch === b.id);
+  let h = '<div class="branch"><div class="bhead anim"><span class="eyebrow">Chi nhánh</span><div class="bname"><h2>' + esc(b.name) + '</h2>' + (b.isNew ? '<span class="newb">NEW · Chi nhánh mới</span>' : '') + '</div><div class="binfo"><span class="addr">' + PIN + esc(b.address) + '</span><span class="muted">' + rs.length + ' phòng</span><a class="mapbtn" href="' + b.map + '" target="_blank" rel="noopener">' + PIN + 'Mở Google Maps</a></div></div>';
+  if (b.id === 'lmx') {
+    TY.forEach((t) => {
+      const tr = rs.filter((r) => r.type === t.id);
+      if (!tr.length) return;
+      h += '<div class="type"><div class="thead anim"><h3>' + esc(t.name) + '</h3>' + chips(t.desc) + '</div>' + tr.map(room).join('') + '</div>';
+    });
+  } else {
+    h += rs.map(room).join('');
+  }
+  document.getElementById('content').innerHTML = h + '</div>';
+}
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-b]'); if (!btn) return;
+  branch = btn.dataset.b; render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+let cur = null;
+function show() {
+  const s = sets[cur.k], p = s.photos[cur.i];
+  lbImg.style.animation = 'none'; void lbImg.offsetWidth; lbImg.style.animation = '';
+  lbImg.src = p.src; lbImg.alt = s.label + ' – ' + p.cap;
+  lbCap.textContent = s.label + ' · ' + p.cap + ' · ' + (cur.i + 1) + '/' + s.photos.length;
+}
+function open(k, i) { cur = { k, i }; show(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('lbClose').focus(); }
+function close() { lb.classList.remove('open'); document.body.style.overflow = ''; cur = null; }
+function step(d) { const n = sets[cur.k].photos.length; cur.i = (cur.i + d + n) % n; show(); }
+document.getElementById('content').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-k]'); if (b) open(b.dataset.k, +b.dataset.i);
+});
+document.getElementById('lbClose').onclick = close;
+document.getElementById('lbPrev').onclick = () => step(-1);
+document.getElementById('lbNext').onclick = () => step(1);
+lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+document.addEventListener('keydown', (e) => {
+  if (!cur) return;
+  if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') step(-1); else if (e.key === 'ArrowRight') step(1);
+});
+let tx = null;
+lb.addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', (e) => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); tx = null; });
+render();
+</script>
+</body>
+</html>
