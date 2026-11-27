@@ -287,11 +287,33 @@ function show(anim = true) {
   lbImg.style.transition = 'none'; lbImg.style.transform = '';
   lbImg.style.animation = 'none';
   if (anim) { void lbImg.offsetWidth; lbImg.style.animation = ''; }
-  lbImg.src = p.src; lbImg.alt = s.label + ' – ' + p.cap;
+  lbImg.alt = s.label + ' – ' + p.cap;
   lbCap.textContent = (cur.i + 1) + ' / ' + n;
+  // Show the small thumbnail at once (usually cached), then swap in the full photo when it is decoded.
+  if (loaded.has(p.src)) lbImg.src = p.src;
+  else {
+    lbImg.src = p.thumb;
+    const full = new Image(), want = p.src;
+    full.src = want;
+    full.decode().catch(() => {}).then(() => { loaded.add(want); if (cur && sets[cur.k].photos[cur.i].src === want) lbImg.src = want; });
+  }
   // Preload neighbours so a swipe never slides in a blank frame.
-  [1, -1].forEach((d) => { new Image().src = s.photos[(cur.i + d + n) % n].src; });
+  [1, -1, 2].forEach((d) => prefetch(s.photos[(cur.i + d + n) % n]));
 }
+const loaded = new Set(), fetched = new Set();
+function prefetch(p) {
+  if (!p || fetched.has(p.src)) return;
+  fetched.add(p.src);
+  const im = new Image(); im.onload = () => loaded.add(p.src); im.src = p.src;
+}
+// Start loading full photos as soon as the visitor shows intent (hover or touch on a gallery tile).
+function intent(e) {
+  const b = e.target.closest && e.target.closest('[data-k]'); if (!b) return;
+  const ps = sets[b.dataset.k].photos, i = +b.dataset.i;
+  [0, 1, 2].forEach((d) => prefetch(ps[(i + d) % ps.length]));
+}
+document.getElementById('content').addEventListener('pointerover', intent, { passive: true });
+document.getElementById('content').addEventListener('touchstart', intent, { passive: true });
 function open(k, i) { cur = { k, i }; show(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('lbClose').focus(); }
 function close() { lb.classList.remove('open'); document.body.style.overflow = ''; cur = null; }
 function step(d, anim = true) { const n = sets[cur.k].photos.length; cur.i = (cur.i + d + n) % n; show(anim); }
