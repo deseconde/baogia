@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>De Seconde Home – Ảnh thực tế các phòng gần sân bay Tân Sơn Nhất</title>
 <meta name="description" content="Xem ảnh thực tế từng phòng De Seconde Home: Cozy Standard, Master, Cinema, Suite. 2 chi nhánh Lê Minh Xuân và Trương Hoàng Thanh, gần sân bay Tân Sơn Nhất, TP.HCM.">
 <link rel="canonical" href="https://baogia.desecondehome.com/">
@@ -146,15 +146,16 @@ main .wrap{padding-top:8px;padding-bottom:64px;display:flex;flex-direction:colum
 .anim{animation:up .6s cubic-bezier(.2,.7,.2,1) both}
 .ph{animation:up .5s cubic-bezier(.2,.7,.2,1) both}
 .ph:nth-child(2){animation-delay:.05s}.ph:nth-child(3){animation-delay:.1s}.ph:nth-child(4){animation-delay:.15s}.ph:nth-child(5){animation-delay:.2s}.ph:nth-child(6){animation-delay:.25s}.ph:nth-child(n+7){animation-delay:.3s}
-.lb{position:fixed;inset:0;z-index:50;background:rgba(10,16,18,.94);display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;animation:fade .25s ease both}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(10,16,18,.96);display:none;flex-direction:column;padding:72px 24px max(16px,env(safe-area-inset-bottom));animation:fade .25s ease both;overscroll-behavior:contain;touch-action:pan-y pinch-zoom}
 .lb.open{display:flex}
-.lb img{max-width:100%;max-height:calc(100vh - 160px);object-fit:contain;border-radius:8px;animation:zoom .35s cubic-bezier(.2,.7,.2,1) both}
-.lb .bar{display:flex;align-items:center;gap:16px;color:#fff}
-.lb .cap{font-size:15px;text-align:center;min-width:200px}
+.lb .stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.lb img{display:block;max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;animation:zoom .35s cubic-bezier(.2,.7,.2,1) both}
+.lb .bar{flex:none;height:80px;display:flex;align-items:center;justify-content:center;gap:28px;color:#fff}
+.lb .cap{width:72px;font-size:16px;font-weight:600;text-align:center;font-variant-numeric:tabular-nums}
 .nav{width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .2s,transform .15s}
 .nav:hover{background:rgba(255,255,255,.28)}
 .nav:active{transform:scale(.92)}
-.lb .close{position:absolute;top:16px;right:16px}
+.lb .close{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px}
 @media (max-width:600px){
 .wrap{padding:0 14px}
 .logo .de{font-size:28px}.logo .sm{font-size:9px}
@@ -167,7 +168,7 @@ main .wrap{padding-top:8px;padding-bottom:64px;display:flex;flex-direction:colum
 .gal.s0{grid-template-rows:260px}
 .gal .ph:first-child{grid-column:1/-1;grid-row:auto}
 .gal.s1 .ph:nth-child(2){grid-column:1/-1}
-.lb{padding:12px}.lb .cap{min-width:0;font-size:13px}
+.lb{padding:68px 0 max(8px,env(safe-area-inset-bottom))}.lb img{border-radius:0}.lb .bar{height:88px;gap:40px}.lb .nav:not(.close){width:56px;height:56px}
 }
 @media (max-width:400px){
 .seg button .n{display:none}
@@ -201,7 +202,7 @@ footer.about li strong{display:block;color:#17262A}
 </div></footer>
 <div class="lb" id="lb" role="dialog" aria-label="Xem ảnh lớn" aria-modal="true">
 <button class="nav close" id="lbClose" aria-label="Đóng"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-<img id="lbImg" alt="">
+<div class="stage"><img id="lbImg" alt=""></div>
 <div class="bar">
 <button class="nav" id="lbPrev" aria-label="Ảnh trước"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
 <span class="cap" id="lbCap"></span>
@@ -281,29 +282,71 @@ document.getElementById('tabs').addEventListener('click', (e) => {
 
 const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
 let cur = null;
-function show() {
-  const s = sets[cur.k], p = s.photos[cur.i];
-  lbImg.style.animation = 'none'; void lbImg.offsetWidth; lbImg.style.animation = '';
+function show(anim = true) {
+  const s = sets[cur.k], p = s.photos[cur.i], n = s.photos.length;
+  lbImg.style.transition = 'none'; lbImg.style.transform = '';
+  lbImg.style.animation = 'none';
+  if (anim) { void lbImg.offsetWidth; lbImg.style.animation = ''; }
   lbImg.src = p.src; lbImg.alt = s.label + ' – ' + p.cap;
-  lbCap.textContent = (cur.i + 1) + ' / ' + s.photos.length;
+  lbCap.textContent = (cur.i + 1) + ' / ' + n;
+  // Preload neighbours so a swipe never slides in a blank frame.
+  [1, -1].forEach((d) => { new Image().src = s.photos[(cur.i + d + n) % n].src; });
 }
 function open(k, i) { cur = { k, i }; show(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('lbClose').focus(); }
 function close() { lb.classList.remove('open'); document.body.style.overflow = ''; cur = null; }
-function step(d) { const n = sets[cur.k].photos.length; cur.i = (cur.i + d + n) % n; show(); }
+function step(d, anim = true) { const n = sets[cur.k].photos.length; cur.i = (cur.i + d + n) % n; show(anim); }
 document.getElementById('content').addEventListener('click', (e) => {
   const b = e.target.closest('[data-k]'); if (b) open(b.dataset.k, +b.dataset.i);
 });
 document.getElementById('lbClose').onclick = close;
 document.getElementById('lbPrev').onclick = () => step(-1);
 document.getElementById('lbNext').onclick = () => step(1);
-lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+let swiped = false;
+lb.addEventListener('click', (e) => { if (swiped) return; if (e.target === lb || e.target.classList.contains('stage')) close(); });
 document.addEventListener('keydown', (e) => {
   if (!cur) return;
   if (e.key === 'Escape') close(); else if (e.key === 'ArrowLeft') step(-1); else if (e.key === 'ArrowRight') step(1);
 });
-let tx = null;
-lb.addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; }, { passive: true });
-lb.addEventListener('touchend', (e) => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); tx = null; });
+// Swipe: the photo follows the finger, then slides out and the next one slides in.
+function slide(x, done) {
+  lbImg.style.transition = 'transform .24s cubic-bezier(.2,.7,.2,1)';
+  lbImg.style.transform = 'translateX(' + x + 'px)';
+  if (!done) return;
+  let fired = false;
+  const f = () => { if (fired) return; fired = true; lbImg.removeEventListener('transitionend', f); done(); };
+  lbImg.addEventListener('transitionend', f); setTimeout(f, 320);
+}
+let sx = null, sy = 0, dx = 0, axis = null, busy = false;
+lb.addEventListener('touchstart', (e) => {
+  if (busy || e.touches.length > 1 || e.target.closest('.nav')) { sx = null; return; }
+  sx = e.touches[0].clientX; sy = e.touches[0].clientY; dx = 0; axis = null;
+  lbImg.style.animation = 'none'; lbImg.style.transition = 'none';
+}, { passive: true });
+lb.addEventListener('touchmove', (e) => {
+  if (sx === null) return;
+  const x = e.touches[0].clientX - sx, y = e.touches[0].clientY - sy;
+  if (!axis) { if (Math.abs(x) < 6 && Math.abs(y) < 6) return; axis = Math.abs(x) > Math.abs(y) ? 'x' : 'y'; }
+  if (axis !== 'x') return;
+  dx = x; lbImg.style.transform = 'translateX(' + dx + 'px)';
+}, { passive: true });
+function endSwipe() {
+  if (sx === null) return;
+  sx = null;
+  if (axis !== 'x') return;
+  swiped = true; setTimeout(() => { swiped = false; }, 400);
+  const w = lb.clientWidth;
+  if (Math.abs(dx) < Math.min(80, w * 0.18)) return slide(0);
+  const d = dx < 0 ? 1 : -1;
+  busy = true;
+  slide(-d * w, () => {
+    step(d, false);
+    lbImg.style.transform = 'translateX(' + d * w + 'px)';
+    void lbImg.offsetWidth;
+    slide(0, () => { busy = false; });
+  });
+}
+lb.addEventListener('touchend', endSwipe);
+lb.addEventListener('touchcancel', () => { if (sx !== null && axis === 'x') { sx = null; slide(0); } else sx = null; });
 render();
 </script>
 </body>
